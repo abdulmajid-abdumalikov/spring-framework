@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="transform" class="uz.pdp.Transform"/>
+
+    <bean id="transformAspect" class="uz.pdp.TransformAspect"/>
+
+    <aop:config>
+        <aop:aspect id="logAspect" ref="transformAspect">
+            <aop:pointcut id="startMethod" expression="execution(* uz.pdp.Transform.start(..))"/>
+            <aop:before method="beforeStart" pointcut-ref="startMethod"/>
+            <aop:after method="afterStart" pointcut-ref="startMethod"/>
+            <aop:after-returning method="afterReturningStart" pointcut-ref="startMethod"/>
+            <aop:after-throwing method="afterThrowingStart" pointcut-ref="startMethod"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
