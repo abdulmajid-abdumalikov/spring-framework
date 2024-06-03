@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Todo</title>
+</head>
+<body>
+<h1>Edit Todo</h1>
+<form action="/todos/update" method="post">
+    <input type="hidden" id="id" name="id" th:value="${todo.id}">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" th:value="${todo.title}">
+    <br>
+    <label for="priority">Priority:</label>
+    <input type="text" id="priority" name="priority" th:value="${todo.priority}">
+    <br>
+    <button type="submit">Update Todo</button>
+</form>
+</body>
+</html>
